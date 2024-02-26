@@ -14,10 +14,9 @@
    <string>Chat GUI</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0">
-
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
+     <item>
       <widget class="QLineEdit" name="message_to_send">
        <property name="toolTip">
         <string>Message to send</string>
@@ -36,29 +35,45 @@
      </item>
     </layout>
    </item>
-
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-        <widget class="QLabel" name="reply_label">
-         <property name="text">
-          <string>Reply from Chatbox: </string>
-         </property>
-        </widget>
-      </item>
-      <item>
-        <widget class="QLabel" name="reply">
-         <property name="text">
-          <string>-</string>
-         </property>
-        </widget>
-      </item>
+     <item>
+      <widget class="QLabel" name="reply_label">
+       <property name="text">
+        <string>Reply from Chatbox: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="chat_reply">
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
-
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="arith_label">
+       <property name="text">
+        <string>Reply from Arith</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="arith_reply">
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
+     <item>
       <widget class="QLineEdit" name="counter_val_to_get">
        <property name="toolTip">
         <string>
@@ -84,26 +99,24 @@
      </item>
     </layout>
    </item>
-
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-        <widget class="QLabel" name="counter_reply_label">
-         <property name="text">
-          <string>Reply from Counter: </string>
-         </property>
-        </widget>
-      </item>
-      <item>
-        <widget class="QLabel" name="counter_reply">
-         <property name="text">
-          <string>-</string>
-         </property>
-        </widget>
-      </item>
+     <item>
+      <widget class="QLabel" name="counter_reply_label">
+       <property name="text">
+        <string>Reply from Counter: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="counter_reply">
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
-
   </layout>
  </widget>
  <resources/>

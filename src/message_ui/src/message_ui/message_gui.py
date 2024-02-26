@@ -48,7 +48,7 @@ from counter_node.srv import *
 class MessageGUI(Plugin):
 
     def reply_msg_callback(self, msg_in):
-        self._widget.reply.setText(msg_in.message)
+        self._widget.chat_reply.setText(msg_in.message)
 
     def arithmetic_reply_msg_callback(self, msg_in):
         display_text = 'Operation Type: '+msg_in.oper_type+'\n'+ \
@@ -56,7 +56,7 @@ class MessageGUI(Plugin):
                        'Time Received: '+str(msg_in.time_received)+'\n'+ \
                        'Time Answered: '+str(msg_in.time_answered)+'\n'+ \
                        'Process Time: '+str(msg_in.process_time)
-        self._widget.reply.setText(display_text)
+        self._widget.arith_reply.setText(display_text)
 
     def message_count_display(self, counter_val):
         display_text = ''
@@ -79,9 +79,6 @@ class MessageGUI(Plugin):
 
         self.message_pub = rospy.Publisher("sent_msg", sent_msg, queue_size=1000)
 
-        rospy.Subscriber("reply_msg", reply_msg, self.reply_msg_callback)
-        rospy.Subscriber("arithmetic_reply", arithmetic_reply, self.arithmetic_reply_msg_callback)
-
         self.msg_to_send = sent_msg()
         self.counter_req_id = -1
 
@@ -100,6 +97,11 @@ class MessageGUI(Plugin):
 
         self._widget.send_message.pressed.connect(self._on_send_message_pressed)
         self._widget.send_request.pressed.connect(self._on_send_request_pressed)
+
+        # You should load the GUI before referencing callback functions that call GUI attributes...
+        # Otherwise you get needless errors
+        rospy.Subscriber("reply_msg", reply_msg, self.reply_msg_callback)
+        rospy.Subscriber("arithmetic_reply", arithmetic_reply, self.arithmetic_reply_msg_callback)
         
     def _on_msg_to_send_changed(self, msg):
         msg = str(msg)
