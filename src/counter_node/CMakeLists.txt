@@ -9,6 +9,7 @@ project(counter_node)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   chatbot_node
+  arithmetic_node
   message_ui
   roscpp
   std_msgs
@@ -107,7 +108,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES counter_node
-  CATKIN_DEPENDS chatbot_node message_ui roscpp std_msgs message_runtime
+  CATKIN_DEPENDS chatbot_node arithmetic_node message_ui roscpp std_msgs message_runtime
 #  DEPENDS system_lib
 )
 

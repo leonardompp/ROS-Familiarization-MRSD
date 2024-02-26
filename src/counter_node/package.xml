@@ -50,6 +50,7 @@
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>chatbot_node</build_depend>
+  <build_depend>arithmetic_node</build_depend>
   <build_depend>message_ui</build_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>std_msgs</build_depend>
@@ -62,6 +63,7 @@
   <exec_depend>message_ui</exec_depend>
   <exec_depend>roscpp</exec_depend>
   <exec_depend>std_msgs</exec_depend>
+  <exec_depend>arithmetic_node</exec_depend>
   <exec_depend>message_runtime</exec_depend>
 
 

@@ -40,7 +40,7 @@ from python_qt_binding.QtWidgets import QShortcut, QWidget
 from rqt_gui_py.plugin import Plugin
 from message_ui.msg import sent_msg
 from chatbot_node.msg import reply_msg
-#from arithmetic_node.msg import arithmetic_reply 
+from arithmetic_node.msg import arithmetic_reply 
 from std_msgs.msg import Int16
 from counter_node.srv import *
 
@@ -50,13 +50,13 @@ class MessageGUI(Plugin):
     def reply_msg_callback(self, msg_in):
         self._widget.reply.setText(msg_in.message)
 
-    # def arithmetic_reply_msg_callback(self, msg_in):
-    #     display_text = 'Operation Type: '+msg_in.oper_type+'\n'+ \
-    #                    'Answer: '+str(msg_in.answer)+'\n'+ \
-    #                    'Time Received: '+str(msg_in.time_received)+'\n'+ \
-    #                    'Time Answered: '+str(msg_in.time_answered)+'\n'+ \
-    #                    'Process Time: '+str(msg_in.process_time)
-    #     self._widget.reply.setText(display_text)
+    def arithmetic_reply_msg_callback(self, msg_in):
+        display_text = 'Operation Type: '+msg_in.oper_type+'\n'+ \
+                       'Answer: '+str(msg_in.answer)+'\n'+ \
+                       'Time Received: '+str(msg_in.time_received)+'\n'+ \
+                       'Time Answered: '+str(msg_in.time_answered)+'\n'+ \
+                       'Process Time: '+str(msg_in.process_time)
+        self._widget.reply.setText(display_text)
 
     def message_count_display(self, counter_val):
         display_text = ''
@@ -80,7 +80,7 @@ class MessageGUI(Plugin):
         self.message_pub = rospy.Publisher("sent_msg", sent_msg, queue_size=1000)
 
         rospy.Subscriber("reply_msg", reply_msg, self.reply_msg_callback)
-        # rospy.Subscriber("arithmetic_reply", arithmetic_reply, self.arithmetic_reply_msg_callback)
+        rospy.Subscriber("arithmetic_reply", arithmetic_reply, self.arithmetic_reply_msg_callback)
 
         self.msg_to_send = sent_msg()
         self.counter_req_id = -1
