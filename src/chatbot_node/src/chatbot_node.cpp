@@ -40,6 +40,7 @@ int main(int argc, char **argv) {
 
   while(ros::ok()) {
     ros::spinOnce();
+    chatbot_response.header.stamp = ros::Time::now();
     msg_publisher.publish(chatbot_response);
     loop_rate.sleep();
   }
