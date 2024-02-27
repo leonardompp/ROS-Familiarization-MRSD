@@ -58,7 +58,7 @@
      <item>
       <widget class="QLabel" name="arith_label">
        <property name="text">
-        <string>Reply from Arith</string>
+        <string>Reply from Arith Node:</string>
        </property>
       </widget>
      </item>

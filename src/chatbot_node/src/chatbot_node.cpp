@@ -22,7 +22,7 @@ void message_callback(const message_ui::sent_msg::ConstPtr& msg){
         reply = "I am fine, thank you";
     }
     else{
-        reply = "Sorry, I dont understand that command";
+        reply = "";
     }
     chatbot_response.message = reply;
 }

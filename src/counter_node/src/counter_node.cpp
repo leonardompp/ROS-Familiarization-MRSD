@@ -7,13 +7,15 @@
 int num_reply_msg = 0;
 int num_sent_msg = 0;
 
-// TODO: Initialization
+bool all_sent_accounted = false;
+
 ros::Time last_sent_msg_time;
 ros::Time last_reply_msg_time;
 
 ros::Subscriber reply_msg_sub;
 ros::Subscriber arithmetic_reply_msg_sub;
 ros::Subscriber sent_msg_sub;
+
 
 bool service_callback(counter_node::counter::Request &req, counter_node::counter::Response &resp){
     int16_t request_type = req.req_id;
@@ -45,24 +47,32 @@ void sent_msg_callback(const message_ui::sent_msg msg)
 {
 	num_sent_msg++;
 	last_sent_msg_time = msg.header.stamp;
+    all_sent_accounted = false;
 }
 
 void reply_msg_callback(const chatbot_node::reply_msg msg)
 {
-	num_reply_msg++;
-	last_reply_msg_time = msg.header.stamp;
+    if(!msg.message.empty() and not all_sent_accounted) {
+        num_reply_msg++;
+        last_reply_msg_time = msg.header.stamp;
+        all_sent_accounted = true;
+    }
 }
 
 void arithmetic_reply_msg_callback(const arithmetic_node::arithmetic_reply msg)
 {
-    num_reply_msg++;
- 	last_reply_msg_time = msg.header.stamp;
+    if(!msg.oper_type.empty() and not all_sent_accounted){
+        num_reply_msg++;
+        last_reply_msg_time = msg.header.stamp;
+        all_sent_accounted = true;
+    }
 }
 
 int main(int argc, char **argv) {
 
   ros::init(argc, argv, "counter_node");
   ros::NodeHandle n;
+
 
   reply_msg_sub = n.subscribe("reply_msg", 1000, reply_msg_callback);
   sent_msg_sub = n.subscribe("sent_msg", 1000, sent_msg_callback);
